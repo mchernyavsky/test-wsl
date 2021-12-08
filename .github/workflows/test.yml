@@ -1,0 +1,38 @@
+name: test
+
+on:
+    push:
+    pull_request:
+
+jobs:
+    test:
+        runs-on: windows-2019
+        timeout-minutes: 30
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Set up WSL
+              uses: Vampire/setup-wsl@v1
+              with:
+                  distribution: Ubuntu-18.04
+                  additional-packages: cargo
+
+            - name: Check environment
+              shell: wsl-bash {0}
+              run: rustc --version
+
+            - name: Build
+              shell: wsl-bash {0}
+              run: cargo build
+
+            - name: Test
+              shell: wsl-bash {0}
+              run: cargo test
+
+            - name: Run
+              shell: wsl-bash {0}
+              run: cargo run
+
+            - name: Finish check
+              run: echo "Check finished successfully!"
