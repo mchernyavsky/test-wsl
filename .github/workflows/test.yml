@@ -16,7 +16,7 @@ jobs:
               uses: Vampire/setup-wsl@v1
               with:
                   distribution: Ubuntu-20.04
-#                  additional-packages: cargo
+                  additional-packages: cargo
 
             - name: Check environment
               shell: wsl-bash {0}
