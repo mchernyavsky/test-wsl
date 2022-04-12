@@ -7,7 +7,7 @@ on:
 jobs:
     test:
         runs-on: windows-2022
-        timeout-minutes: 30
+        timeout-minutes: 20
 
         steps:
             - uses: actions/checkout@v2
@@ -16,11 +16,13 @@ jobs:
               uses: Vampire/setup-wsl@v1
               with:
                   distribution: Ubuntu-20.04
-                  additional-packages: cargo
+                  additional-packages:
+                      cargo
+                      strace
 
             - name: Check environment
               shell: wsl-bash {0}
-              run: rustc --version
+              run: strace rustc --version
 
             - name: Build
               shell: wsl-bash {0}
