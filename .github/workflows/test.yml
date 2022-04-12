@@ -16,11 +16,13 @@ jobs:
               uses: Vampire/setup-wsl@v1
               with:
                   distribution: Ubuntu-18.04
-                  additional-packages: strace
+                  additional-packages:
+                      strace
+                      cargo
 
-            - name: Set up Rust
-              shell: wsl-bash {0}
-              run: curl https://sh.rustup.rs -sSf | sh -s -- -y
+#            - name: Set up Rust
+#              shell: wsl-bash {0}
+#              run: curl https://sh.rustup.rs -sSf | sh -s -- -y
 
             - name: Check environment
               shell: wsl-bash {0}
